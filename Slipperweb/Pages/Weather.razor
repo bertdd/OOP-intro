@@ -1,0 +1,36 @@
+﻿@page "/weather"
+@attribute [StreamRendering(true)]
+@using eersteles
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data from the server.</p>
+
+@if (slippers == null)
+{
+  <p><em>Loading...</em></p>
+}
+else
+{
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Color</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var slipper in slippers)
+      {
+        <tr>
+          <td>@slipper.Color</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+@code {
+  SlipperList slippers = new SlipperList();
+}
