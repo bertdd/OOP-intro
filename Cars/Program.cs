@@ -1,7 +1,7 @@
 ﻿using Cars;
 using System.Text.Json;
 
-var carInfo = File.ReadAllText(@"c:\temp\car.json");
+var carInfo = File.ReadAllText("car.json");
 var carList = (List<Car>?) JsonSerializer.Deserialize(carInfo, typeof(List<Car>));
 
 foreach (var car in carList)
@@ -10,4 +10,4 @@ foreach (var car in carList)
 }
 
 var data = JsonSerializer.Serialize(carList);
-File.WriteAllText(@"c:\temp\car.json", data);
+File.WriteAllText("car.json", data);
