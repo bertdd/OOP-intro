@@ -1,33 +1,41 @@
-﻿using rs6;
+﻿using System;
 using System.Globalization;
 using System.Text.Json;
+using rs6;
 
-CultureInfo.CurrentCulture = new CultureInfo("nl-NL");
+CultureInfo.CurrentCulture = new("nl-NL");
+Console.WriteLine(DateTime.Now);
 
-var carlist = 
-  (List<Car>?)JsonSerializer.Deserialize(File.ReadAllText("cars.json"),
-  typeof(List<Car>));
-
-var toei = new Driver
+var list = new List<Car>
 {
-  Name = "Toei",
-  Age = 20,
-  Licence = "rolstoel"
+  new Car
+  {
+    Brand = "Audi",
+    Model = "RS-6",
+    Price = 300000
+  },
+  new Car
+  {
+    Brand = "Volkswagen",
+    Model = "Golf GTI",
+    Year = 2002,
+    Price = 12000
+  },
+  new Car
+  {
+    Year = 2016,
+    Price = 32000,
+    Model = "G classes",
+    Brand = "mercedes"
+  }
 };
 
-var nordin = new Driver
-{
-  Name = "Nordin"
-};
-
-carlist[0].CarDriver = nordin;
-carlist[1].CarDriver = nordin;
-carlist[2].CarDriver = toei;
-
-foreach (var car in carlist)
+foreach (var car in list)
 {
   Console.WriteLine(car);
 }
 
-File.WriteAllText("cars.json", JsonSerializer.Serialize(carlist));
+var data = JsonSerializer.Serialize(list);
+
+File.WriteAllText(@"c:\temp\mijn.json", data);
 
